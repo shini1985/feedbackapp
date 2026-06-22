@@ -297,7 +297,7 @@ export default function FeedbackForm() {
         </form>
 
         <p style={{ textAlign:"center", marginTop:20, color:"#94a3b8", fontSize:12 }}>
-          © Emirates Secretarial Services · Emirates Karama Business Center
+          © Emirates Secretarial Services · Karama Business Center
         </p>
       </div>
     </div>
