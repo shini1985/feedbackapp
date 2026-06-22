@@ -64,7 +64,8 @@ export default function FeedbackForm() {
   const [name, setName]           = useState("")
   const [submitting, setSubmitting] = useState(false)
   const [error, setError]         = useState("")
-
+ const GOLD = "#f5b301"
+  const GOLD_DARK = "#d99a00"
   const L   = t[lang]
   const rtl = lang === "ar"
   const dir: "rtl"|"ltr" = rtl ? "rtl" : "ltr"
@@ -143,8 +144,8 @@ export default function FeedbackForm() {
                       <input type="radio" name="dept" value={d.id} checked={sel} onChange={() => setDept(d.id)} style={{ position:"absolute", opacity:0, width:0, height:0 }} />
                       {sel && <div style={{ position:"absolute", top:6, right:6, width:18, height:18, background:d.fg, borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", fontSize:10, color:"white", fontWeight:700 }}>✓</div>}
                       <div style={{ width:44, height:44, background:sel?"white":d.bg, borderRadius:10, display:"flex", alignItems:"center", justifyContent:"center", fontSize:22 }}>{d.icon}</div>
-                      <span style={{ fontSize:12, fontWeight:700, color:sel?d.fg:"#334155", textAlign:"center", lineHeight:1.25 }}>{rtl?d.ar:d.en}</span>
-                      <span style={{ fontSize:10, color:"#94a3b8", textAlign:"center", direction:rtl?"ltr":"rtl" }}>{rtl?d.en:d.ar}</span>
+                      <span style={{ fontSize:15, fontWeight:700, color:sel?d.fg:"#334155", textAlign:"center", lineHeight:1.25 }}>{rtl?d.ar:d.en}</span>
+                      <span style={{ fontSize:18, color:"#94a3b8", textAlign:"center", direction:rtl?"ltr":"rtl" }}>{rtl?d.en:d.ar}</span>
                     </label>
                   )
                 })}
@@ -154,21 +155,75 @@ export default function FeedbackForm() {
             <hr style={{ border:"none", borderTop:"1px solid #f1f5f9", margin:"0 0 32px" }} />
 
             {/* ── Rating ── */}
-            <section style={{ marginBottom:36 }}>
-              <h2 style={{ fontSize:"clamp(1.1rem,3vw,1.4rem)", fontWeight:700, color:"#1e293b", marginBottom:16, marginTop:0, textAlign:rtl?"right":"left" }}>{L.ratingQ}</h2>
-              <div style={{ display:"flex", justifyContent:"center", gap:12, flexWrap:"wrap" }}>
-                {[1,2,3,4,5].map(s => {
-                  const lit = rating !== null && s <= rating
-                  return (
-                    <label key={s} style={{ display:"flex", alignItems:"center", justifyContent:"center", width:64, height:64, borderRadius:"50%", border:`2.5px solid ${lit?TEAL:"#e2e8f0"}`, background:lit?TEAL:"white", color:lit?"white":"#cbd5e1", fontSize:28, cursor:"pointer" }}>
-                      <input type="radio" name="rating" value={s} checked={rating===s} onChange={() => setRating(s)} style={{ position:"absolute", opacity:0, width:0, height:0 }} />
-                      ★
-                    </label>
-                  )
-                })}
-              </div>
-              {rating && <p style={{ textAlign:"center", marginTop:10, fontSize:14, color:TEAL, fontWeight:600 }}>{L.rate[rating-1]}</p>}
-            </section>
+<section style={{ marginBottom: 36 }}>
+  <h2
+    style={{
+      fontSize: "clamp(1.1rem,3vw,1.4rem)",
+      fontWeight: 700,
+      color: "#1e293b",
+      marginBottom: 16,
+      marginTop: 0,
+      textAlign: rtl ? "right" : "left",
+    }}
+  >
+    {L.ratingQ}
+  </h2>
+
+  <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
+    {[1, 2, 3, 4, 5].map((s) => {
+      const lit = rating !== null && s <= rating
+
+      return (
+        <label
+          key={s}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 64,
+            height: 64,
+            borderRadius: "50%",
+            border: `2.5px solid ${lit ? GOLD : "#e2e8f0"}`,
+            background: lit ? GOLD : "white",
+            color: lit ? "white" : "#cbd5e1",
+            fontSize: 28,
+            cursor: "pointer",
+            position: "relative",
+          }}
+        >
+          <input
+            type="radio"
+            name="rating"
+            value={s}
+            checked={rating === s}
+            onChange={() => setRating(s)}
+            style={{
+              position: "absolute",
+              opacity: 0,
+              width: 0,
+              height: 0,
+            }}
+          />
+          ★
+        </label>
+      )
+    })}
+  </div>
+
+  {rating && (
+    <p
+      style={{
+        textAlign: "center",
+        marginTop: 10,
+        fontSize: 14,
+        color: GOLD_DARK,
+        fontWeight: 700,
+      }}
+    >
+      {L.rate[rating - 1]}
+    </p>
+  )}
+</section>
 
             <hr style={{ border:"none", borderTop:"1px solid #f1f5f9", margin:"0 0 32px" }} />
 
