@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+:root {
+  --radius: 0.5rem;
+  --medical-primary: oklch(0.55 0.12 180);
+  --medical-primary-dark: oklch(0.45 0.12 180);
+  --medical-light: oklch(0.96 0.02 180);
+  --medical-text: oklch(0.35 0.03 180);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.20 0.02 260);
+  --muted-foreground: oklch(0.55 0.03 260);
+  --border: oklch(0.92 0.01 260);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+}
